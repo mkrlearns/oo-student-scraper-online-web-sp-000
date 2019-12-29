@@ -12,7 +12,7 @@ class Scraper
       location = student.css('.student-location').text
       profile_url = student.css('a').attribute('href').value
       student_info = { name: name, location: location, profile_url: profile_url }
-      students << student_info
+      scraped_students << student_info
     end
     students
   end
@@ -24,10 +24,14 @@ class Scraper
     social_icon_container = doc.css(".social-icon-container a").collect { |a| a.attribute("href").value }
 
     social_icon_container.each do |link|
-      if link.include?("twitter") student[:twitter] = link
-      elsif link.include?("linkedin") student[:linkedin] = link
-      elsif link.include?("github") student[:github] = link
-      else student[:blog] = link
+      if link.include?("twitter")
+        student[:twitter] = link
+      elsif link.include?("linkedin")
+        student[:linkedin] = link
+      elsif link.include?("github")
+        student[:github] = link
+      else
+        student[:blog] = link
       end
     end
 
