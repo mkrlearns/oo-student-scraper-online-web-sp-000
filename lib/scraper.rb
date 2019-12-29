@@ -12,7 +12,7 @@ class Scraper
       location = student.css('.student-location').text
       profile_url = student.css('a').attribute('href').value
       student_info = { name: name, location: location, profile_url: profile_url }
-      scraped_students << student_info
+      students << student_info
     end
     students
   end
